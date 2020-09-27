@@ -1,36 +1,87 @@
 # Graphomania
 
+[**Graphomania**](https://en.wikipedia.org/wiki/Graphomania) (from Ancient Greek: γρᾰ́φειν,
+*gráphein*, lit. 'to write'; and μᾰνῐ́ᾱ, *maníā*, lit. 'madness, frenzy') [...] *labels a morbid
+mental condition which results in writing rambling and confused statements, often degenerating into
+a meaningless succession of words or even nonsense then called
+[graphorrhea](https://en.wikipedia.org/wiki/Graphorrhea).*
+
 This is supposed to be a backend serving a Thesaurus REST API.
 
 It is supposed to be used with provided frontend to create a tool enabling and emphasizing one's
-inner graphomaniac (pol. "grafoman" - *"literary wannabe", "prolific bad writer", "talentless
-hack"*).
+inner *grafoman* (from Polish, lit. 'literary wannabe', 'prolific bad writer', 'talentless
+hack').
 
 ### Features *(in order of priority)*
 
 - [ ] `.dat` (thesaurus dictionary) parser module *+ tests*
 - [ ] Flask (?) API server *+ tests*
 - [ ] Basic frontend *+ tests?*
-- [ ] `.idx` (index file) parser module *+ tests*
+- [ ] Solve [inflection](https://en.wikipedia.org/wiki/Inflection) (i.e. convert word in any form to
+its basic form so that lookup can be easily achieved)
+- [ ] `.idx` (index file) parser module *+ tests* (multiple languages?)
 - [ ] Pretty frontend (possibly separate repo)
+- [ ] Analyze and classify data on how much a word is considered *'graphomaniacal'*
 
 ## Requirements
 
-- 
+-
 
 ### Installing dictionaries
 
-- 
+```shell
+# Create folder for new dictionary, assuming current directory is project root.
+$ mkdir -p ./dict/pl-dict
+
+# Download an OpenOffice dictionary pack (see #Links for more details).
+$ wget https://sourceforge.net/projects/aoo-extensions/files/806/4/pl-dict.oxt
+
+# Check filetype, in this case Zip archive.
+$ file pl-dict.oxt
+pl-dict.oxt: Zip archive data, at least v2.0 to extract
+
+# Extract it into `./dict` directory.
+$ unzip pl-dict.oxt -d ./dict/pl-dict
+
+# All done.
+```
 
 ## Notes
 
-- OpenOffice dictionary packs:
-  - come in `.oxt` extension, which is just a zip
-  - `.idx` - index containing byte offset for a word in a corresponding `.dat` file.
-  Format: `word|offset`. First line is encoding, second is number of following *index* lines.
-  - `.dat` - First line is encoding.
+### OpenOffice dictionary packs:
+
+Come in `.oxt` extension, which is just a zip. *Graphomania*'s interest lies only in `.dat` and their
+corresponding index (`.idx`) files.
+
+#### `.dat` - thesaurus dictionary file:
+
+- First line: encoding (e.g. `ISO8859-2`),
+- Followed by *entries*:
+  - First line: word or phrase, followed by `|` character, ending with a positive number *G* of
+  *meaning groups* (e.g. `abolicja|2`, in which case *G* is equal to 2)
+  - *G* lines of *meaning groups* (e.g. `-|rezygnować|wyrzekać się|zrzekać się`).
+    - Format: `-` character, then at least 1 meaning, each preceded by `|` character
+
+Full example of an entry:
+```
+abolicja|2
+-|dymisja|dymisjonowanie|odwołanie|unieważnienie|zdjęcie (pot.)|zniesienie|zwolnienie (pot.)
+-|skasowanie|zniesienie
+```
+
+#### `.idx` - index containing byte offset for a word in a corresponding `.dat` file:
+
+- First line: encoding (e.g. `ISO8859-2`),
+- Second line: number of following *index* lines,
+- Followed by: *index* lines in format: word or phrase, followed by `|` character, ending with a
+positive number *B* indicating a byte offset from the beginning of corresponding `.dat` file (e.g.
+`abiogeneza|3931`, in which case *B* is equal to 3931)
 
 ### Links
 
 - https://extensions.openoffice.org/en/project/polish-dictionary-pack
 - https://dobryslownik.pl
+
+## License
+
+Graphomania is licensed under the GPL-3.0 license. For more information see: [LICENSE](/LICENSE).
