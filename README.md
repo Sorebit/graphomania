@@ -77,6 +77,15 @@ abolicja|2
 positive number *B* indicating a byte offset from the beginning of corresponding `.dat` file (e.g.
 `abiogeneza|3931`, in which case *B* is equal to 3931)
 
+### Frontend
+
+- Front end trzyma cache wyszukanych słów.
+```
+dict[psa] == None
+  GET /api/psa => { keys: [pies, psa, psem, ...], meanings: [czworonog, najlepszy przyjaciel człowieka, sabaka] }
+  dict[keys[0]] == dict[keys[1]] == ... == meanings
+```
+
 ### Links
 
 - https://extensions.openoffice.org/en/project/polish-dictionary-pack
