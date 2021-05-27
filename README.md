@@ -90,6 +90,16 @@ dict[psa] == None
 
 - https://extensions.openoffice.org/en/project/polish-dictionary-pack
 - https://dobryslownik.pl
+- https://hunspell.github.io
+- https://github.com/hunspell/hunspell
+- https://www.pythonforbeginners.com/files/reading-and-writing-files-in-python
+- http://python-notes.curiousefficiency.org/en/latest/python3/text_file_processing.html
+- https://www.systutorials.com/docs/linux/man/4-hunspell/
+- https://stackoverflow.com/questions/18852161/dic-line-format-definition
+- https://typethinker.blogspot.com/2008/02/fun-with-aspell-word-lists.html
+- http://aspell.net/man-html/
+- https://wiki.documentfoundation.org/Development/Dictionaries
+- https://synonim.net/synonim/wycieruch
 
 ## License
 
