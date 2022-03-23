@@ -25,7 +25,7 @@ its basic form so that lookup can be easily achieved)
 
 ## Requirements
 
--
+- Python 3.8.2
 
 ### Installing dictionaries
 
@@ -50,8 +50,9 @@ $ unzip pl-dict.oxt -d ./dict/pl-dict
 
 ### OpenOffice dictionary packs:
 
-Come in `.oxt` extension, which is just a zip. *Graphomania*'s interest lies only in `.dat` and their
-corresponding index (`.idx`) files.
+Come in `.oxt` extension, which is just a zip. *Graphomania*'s interest as of now lies only in
+`.dat` and their corresponding index (`.idx`) files. For future features other dictionary files will
+be more than helpful.
 
 #### `.dat` - thesaurus dictionary file:
 
